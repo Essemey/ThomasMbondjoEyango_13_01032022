@@ -16,6 +16,10 @@ export function Header() {
 
         //Change name in header
         if (auth.firstName && profile && (auth.firstName !== profile.firstName)) {
+            //Change name in localStorage (against actualisation)
+            localStorage.setItem('user_token',
+                JSON.stringify({ ...JSON.parse(localStorage.getItem('user_token')), firstName: profile.firstName })
+            )
             setAuth(s => ({ ...s, firstName: profile.firstName }))
         }
 
